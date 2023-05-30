@@ -1,0 +1,32 @@
+
+*{
+
+}
+
+html {
+
+}
+
+body {
+
+}
+
+/******  */
+.d1 {
+border: 6px solid darkorange;
+
+}
+
+
+table, th,tr,td {
+    border: 2px solid rgb(255, 0, 149);
+}
+
+th,td {
+    width: 100px;
+}
+
+form {
+    border: 2px solid rgb(0, 255, 98);
+
+}
