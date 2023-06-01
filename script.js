@@ -39,8 +39,8 @@ function displayBooks() {
 
     // to remove the data of the table before actualizing it
 
-let tableDataa=document.querySelectorAll('td');
-   tableDataa.forEach(a=>a.remove()); 
+let allTableData=document.querySelectorAll('td');
+   allTableData.forEach(a=>a.remove()); 
 /*    let tableRows = document.querySelectorAll('tr');
    tableRows.forEach(a=>a.remove()); 
  */
@@ -51,19 +51,18 @@ for (let book of myLibrary ) {
 tableRow= document.createElement('tr');
 tableRow.setAttribute('id',`i${i++}`)
 
-remove = document.createElement('button');
-remove.setAttribute('type', 'button');
-remove.setAttribute('class', 'remove');
-remove.textContent = 'remove book';
-
 let tableData = document.createElement('td');
 let tableData2 = document.createElement('td');
 
 tableData.textContent = book.title;
 tableData2.textContent = book.author;
 
-table.appendChild(tableRow);
+remove = document.createElement('button');
+remove.setAttribute('type', 'button');
+remove.setAttribute('class', 'remove');
+remove.textContent = 'remove book';
 
+table.appendChild(tableRow);
 tableRow.appendChild(tableData);
 tableRow.appendChild(tableData2);
 tableRow.appendChild(remove);
