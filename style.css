@@ -12,10 +12,6 @@ body {
 }
 
 /******  */
-.d1 {
-border: 6px solid darkorange;
-
-}
 
 
 table, th,tr,td {
@@ -23,7 +19,7 @@ table, th,tr,td {
 }
 
 th,td {
-    width: 100px;
+    width: 200px;
 }
 
 form {
