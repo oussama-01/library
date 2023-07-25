@@ -4,27 +4,33 @@
 
 let myLibrary = [];
 
-function Book(title, author, ztatuz) {
+function Book(title, author, status) {
     this.title = title,
     this.author = author,
-    this.ztatuz = ztatuz
-
-
+    this.status = status
 
 };
 
+// 6 toggle read ztatuz
+// to toggle in the DOM just call displayBooks() after the change in the array
+Book.prototype.toggle = function () {
+
+    if (this.status === 'yes') { this.status = 'no';}
+    else if (this.status === 'no') { this.status = 'yes';};
+
+}
+
 let bookTitle;
 let bookAuthor;
-let booKZtatuz;
+let bookStatus;
 
 // a function that adds a new book to myLibrary
 
-function addBookToLibrary(bookTi,bookAu,ztat) {
+function addBookToLibrary(bookTi, bookAu, stat) {
 
-    let myBook = new Book(bookTi,bookAu, ztat);
+    let myBook = new Book(bookTi, bookAu, stat);
 
     myLibrary.push(myBook);
-
 
 }
 
@@ -35,57 +41,56 @@ function addBookToLibrary(bookTi,bookAu,ztat) {
 
 let table = document.querySelector('table');
 let tableRow;
-let tableRows
-let remove  ;
-let removes =[];
+let tableRows;
+let remove;
+let removes = [];
 let toggle;
-
+let toggles;
 
 function displayBooks() {
 
     // to remove the rows of the table before actualizing it
 
     tableRows = document.querySelectorAll('.rows');
-    tableRows.forEach(a => a.remove()); 
+    tableRows.forEach(a => a.remove());
 
 
-for (let book of myLibrary ) {
+    for (let book of myLibrary) {
 
- 
-tableRow= document.createElement('tr');
-tableRow.setAttribute('class','rows'); // to be able to remove all the rows EXCEPT title, author
 
-let tableData = document.createElement('td');
-let tableData2 = document.createElement('td');
-let tableData3 = document.createElement('td');
+        tableRow = document.createElement('tr');
+        tableRow.setAttribute('class', 'rows'); // to be able to remove all the rows EXCEPT title, author
 
-tableData.textContent = book.title;
-tableData2.textContent = book.author;
-tableData3.textContent = book.ztatuz;
+        let tableData = document.createElement('td');
+        let tableData2 = document.createElement('td');
+        let tableData3 = document.createElement('td');
 
-remove = document.createElement('button');
-remove.setAttribute('type', 'button');
-remove.setAttribute('class', 'remove' );
-remove.textContent = 'remove book';
+        tableData.textContent = book.title;
+        tableData2.textContent = book.author;
+        tableData3.textContent = book.status;
 
-toggle = document.createElement('button');
-toggle.setAttribute('type', 'button');
-toggle.textContent = 'change book ztatuz';
+        remove = document.createElement('button');
+        remove.setAttribute('class', 'remove');
+        remove.textContent = 'remove book';
 
-table.appendChild(tableRow);
-tableRow.appendChild(tableData);
-tableRow.appendChild(tableData2);
-tableRow.appendChild(tableData3);
-tableRow.appendChild(remove);
-tableRow.appendChild(toggle);
+        toggle = document.createElement('button');
+        toggle.setAttribute('class', 'toggle');
+        toggle.textContent = 'change book ztatuz';
 
-}
+        table.appendChild(tableRow);
+        tableRow.appendChild(tableData);
+        tableRow.appendChild(tableData2);
+        tableRow.appendChild(tableData3);
+        tableRow.appendChild(remove);
+        tableRow.appendChild(toggle);
 
-removes = document.querySelectorAll('.remove');
+    }
 
-//console.log();
+    removes = document.querySelectorAll('.remove');
+    toggles = document.querySelectorAll('.toggle');
 
-a();
+ a();
+    b(); 
 }
 
 
@@ -94,50 +99,36 @@ a();
 
 let newBook = document.querySelector('.newBook');
 
-    let form = document.createElement('form');
-    let bookT = document.createElement('input');
-    bookT.setAttribute('id', 'bookT');
-
-    let bookA = document.createElement('input');
-    bookA.setAttribute('id', 'bookA');
-
-    let bookZ = document.createElement('input');
-    bookZ.setAttribute('id','bookZ');
-
-    let submit =document.createElement('button');
-    submit.setAttribute('type', 'button');
-    submit.textContent = 'submit';
+let form = document.querySelector('form');
+form.style.display = 'none';
 
 
 newBook.addEventListener('click', () => {
 
+    form.style.display = 'inline-block';
 
-    document.body.appendChild(form);
-    form.appendChild(bookT);
-    form.appendChild(bookA);
-    form.appendChild(bookZ);
-    form.appendChild(submit);
-
-
-
-} );
+});
 
 
 //////// after the submit button of the form is clicked
 
-submit.addEventListener('click', () => {
+const add = document.querySelector('#add');
 
-    bookTitle = document.querySelector('#bookT').value;
-    bookAuthor = document.querySelector('#bookA').value;
-    booKZtatuz = document.querySelector('#bookZ').value;
+add.addEventListener('click', () => {
 
-form.remove();
+    bookTitle = document.querySelector('#bookTitle').value;
+    bookAuthor = document.querySelector('#bookAuthor').value;
+    bookStatus = document.querySelector('#bookStatus').value;
 
-addBookToLibrary(bookTitle,bookAuthor,booKZtatuz);
+    form.style.display = 'none';
 
-displayBooks();
+    addBookToLibrary(bookTitle, bookAuthor, bookStatus);
 
-console.log(myLibrary);  
+    
+    displayBooks();
+
+
+    console.log(myLibrary);
 
 
 });
@@ -146,51 +137,59 @@ console.log(myLibrary);
 
 
 function a() {
-   removes.forEach(b => b.addEventListener('click', function() {
-// try to assign id here  for tablerow and remove buttons
-// so that every time tablerows and buttond and mylibrary indexes are synch
+    removes.forEach(b => b.addEventListener('click', function () {
+        // try to assign id here  for tablerow and remove buttons
+        // so that every time tablerows and buttond and mylibrary indexes are synch
 
-let i=-1;
-tableRows = document.querySelectorAll('.rows');
-tableRows.forEach(r => {
-r.setAttribute('id', `a${++i}`);
+        let i = -1;
+        tableRows = document.querySelectorAll('.rows');
+        tableRows.forEach(r => {
+            r.setAttribute('id', `a${++i}`);
 
-} );
+        });
 
-let j = -1;
-removes= document.querySelectorAll('.remove');
-removes.forEach(re => {
-    re.setAttribute('id', `b${++j}`);
-});
+        let j = -1;
+        removes = document.querySelectorAll('.remove');
+        removes.forEach(re => {
+            re.setAttribute('id', `b${++j}`);
+        });
 
-let id = b.getAttribute('id')[1];
-
-
-let rem = document.querySelector(`#a${id}`);
-
-rem.remove();
+        let id = b.getAttribute('id')[1];
 
 
- myLibrary.splice(id,1);
+        let rem = document.querySelector(`#a${id}`);
 
-console.log(myLibrary);  
+        rem.remove();
 
-        })  
-);
+
+        myLibrary.splice(id, 1);
+
+        console.log(myLibrary);
+
+    })
+    );
+
 }
 
-//toggle read ztatuz
+// toggle read ztatuz 
 
 
+function b() {
+    toggles.forEach(to => to.addEventListener('click', () => {
 
 
+        let k = -1;
+        toggles = document.querySelectorAll('.toggle');
+        toggles.forEach(t => t.setAttribute('data-key', `${++k}`));
 
+        let id = to.getAttribute('data-key');
+        myLibrary[id].toggle();
 
+        console.log(id);
 
+        displayBooks();
 
-// console.log();
-/* 
+    })
+    );
+}
 
-
-
- */
