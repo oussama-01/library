@@ -12,6 +12,9 @@ body {
 /* background-image: url(/home/oussama/Downloads/books_1280.jpg);
 background-size: cover;  */
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /******  */
@@ -48,17 +51,30 @@ td {
 
 /* ******** */
 form {
-    border: 2px solid rgb(0, 255, 98);
-    display: inline-block;
-
+    border: 5px solid orange;
+    border-radius: 10px;
+    padding: 5px;
 
 }
 
-label {
+h2 {
+    text-align: center;
+
+}
+
+label{
     display: inline-block;
     width: 150px;
 }
 
+#add {
+    display: block;
+    margin: 0 auto;
+}
+
+
 /* remove/ toggle buttons */
+
+
 
 

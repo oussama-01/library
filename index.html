@@ -3,17 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="./script.js" defer></script>
-
-    <!--  <script src="./classScript.js" defer></script> -->
+    
+    <script src="./script.js" defer></script> 
+    <!-- <script src="./classScript.js" defer></script> -->
 
 </head>
 
 <body>
-
 
     <table>
         <tr>
@@ -21,52 +19,35 @@
             <th>Author</th>
             <th>Status</th>
         </tr>
-<!--         <tr class="rows">
-            <td>aaa</td>
-            <td>bbb</td>
-            <td>ccc</td>
-        </tr> -->
 
     </table>
 
     <br><br>
 
     <button class="newBook">Add New Book</button>
+    <br>
 
-    <form >
+    <form>
         <h2>Book Information</h2>
-
-        <p>
+    
+        <div>
             <label for="bookTitle">Book Title:</label>
             <input type="text" id="bookTitle" name="book_title">
-        </p>
-
-        <p>
+        </div> <br>
+    
+        <div>
             <label for="bookAuthor">Book Author:</label>
             <input type="text" id="bookAuthor" name="book_author">
-        </p>
-
-        <p>
-            <label for="bookStatus">Read Status:</label>
-            <input type="text" id="bookStatus" name="read_status" placeholder="yes/ no">
-        </p> 
-
-
-<!--         <ul>
-            <li>
-                <label for="read">Read</label>
-                <input  type="radio" name="read_status" id="read" value="read">
-            </li>
-            <li>
-                <label for="not">Not Read</label>
-                <input  type="radio" id="not" name="read_status" value="not">
-            </li>
-        </ul>  -->
-
-
+        </div><br>
+    
+        <label for="read">Read status:</label>
+        <select name="read_status" id="read">
+            <option >Already read</option>
+            <option >Not read</option>
+        </select>
+    
+        <br><br>
         <button type="button" id="add">Add book</button>
- <!--        <button type="button" id="cancel">Cancel</button>
- -->
     </form>
 
 

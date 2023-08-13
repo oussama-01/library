@@ -11,12 +11,12 @@ function Book(title, author, status) {
 
 };
 
-// 6 toggle read ztatuz
-// to toggle in the DOM just call displayBooks() after the change in the array
+// 6 toggle read status
+
 Book.prototype.toggle = function () {
 
-    if (this.status === 'yes') { this.status = 'no';}
-    else if (this.status === 'no') { this.status = 'yes';};
+    if (this.status === 'Already read') { this.status = 'Not read'; }
+    else if (this.status === 'Not read') { this.status = 'Already read'; };
 
 }
 
@@ -53,7 +53,7 @@ function displayBooks() {
 
     tableRows = document.querySelectorAll('.rows');
     tableRows.forEach(a => a.remove());
-
+                    
 
     for (let book of myLibrary) {
 
@@ -75,7 +75,7 @@ function displayBooks() {
 
         toggle = document.createElement('button');
         toggle.setAttribute('class', 'toggle');
-        toggle.textContent = 'change book ztatuz';
+        toggle.textContent = 'change book status';
 
         table.appendChild(tableRow);
         tableRow.appendChild(tableData);
@@ -89,8 +89,8 @@ function displayBooks() {
     removes = document.querySelectorAll('.remove');
     toggles = document.querySelectorAll('.toggle');
 
- a();
-    b(); 
+    a();
+    b();
 }
 
 
@@ -110,7 +110,7 @@ newBook.addEventListener('click', () => {
 });
 
 
-//////// after the submit button of the form is clicked
+// after the submit button of the form is clicked
 
 const add = document.querySelector('#add');
 
@@ -118,13 +118,12 @@ add.addEventListener('click', () => {
 
     bookTitle = document.querySelector('#bookTitle').value;
     bookAuthor = document.querySelector('#bookAuthor').value;
-    bookStatus = document.querySelector('#bookStatus').value;
-
+    bookStatus = document.querySelector('#read').value;
     form.style.display = 'none';
 
     addBookToLibrary(bookTitle, bookAuthor, bookStatus);
 
-    
+
     displayBooks();
 
 
@@ -171,7 +170,7 @@ function a() {
 
 }
 
-// toggle read ztatuz 
+// toggle read status 
 
 
 function b() {
