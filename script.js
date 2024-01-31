@@ -1,194 +1,160 @@
 
+// an array to store my book objects
 
-// 2 
+const myLibrary = [];
 
-let myLibrary = [];
+// Constructor for making book objects
 
-function Book(title, author, status) {
-    this.title = title,
-    this.author = author,
-    this.status = status
+function BookGenerator(title, author, pages, status) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.status = status;
 
 };
 
-// 6 toggle read status
+// a method to change the read status of a book instance
 
-Book.prototype.toggle = function () {
-
-    if (this.status === 'Already read') { this.status = 'Not read'; }
-    else if (this.status === 'Not read') { this.status = 'Already read'; };
-
-}
-
-let bookTitle;
-let bookAuthor;
-let bookStatus;
-
-// a function that adds a new book to myLibrary
-
-function addBookToLibrary(bookTi, bookAu, stat) {
-
-    let myBook = new Book(bookTi, bookAu, stat);
-
-    myLibrary.push(myBook);
-
-}
-
-/* ******** DOM ******* */
-
-
-// 3 a loop that display the books present in the array 
-
-let table = document.querySelector('table');
-let tableRow;
-let tableRows;
-let remove;
-let removes = [];
-let toggle;
-let toggles;
-
-function displayBooks() {
-
-    // to remove the rows of the table before actualizing it
-
-    tableRows = document.querySelectorAll('.rows');
-    tableRows.forEach(a => a.remove());
-                    
-
-    for (let book of myLibrary) {
-
-
-        tableRow = document.createElement('tr');
-        tableRow.setAttribute('class', 'rows'); // to be able to remove all the rows EXCEPT title, author
-
-        let tableData = document.createElement('td');
-        let tableData2 = document.createElement('td');
-        let tableData3 = document.createElement('td');
-
-        tableData.textContent = book.title;
-        tableData2.textContent = book.author;
-        tableData3.textContent = book.status;
-
-        remove = document.createElement('button');
-        remove.setAttribute('class', 'remove');
-        remove.textContent = 'remove book';
-
-        toggle = document.createElement('button');
-        toggle.setAttribute('class', 'toggle');
-        toggle.textContent = 'change book status';
-
-        table.appendChild(tableRow);
-        tableRow.appendChild(tableData);
-        tableRow.appendChild(tableData2);
-        tableRow.appendChild(tableData3);
-        tableRow.appendChild(remove);
-        tableRow.appendChild(toggle);
-
+BookGenerator.prototype.changeStatus = function () {
+    if (this.status === "already read") {
+        this.status = "not read";
+    } else {
+        this.status = "already read";
     }
-
-    removes = document.querySelectorAll('.remove');
-    toggles = document.querySelectorAll('.toggle');
-
-    a();
-    b();
 }
 
+const book1 = new BookGenerator("a", "b", 3, "not read");
+const book2 = new BookGenerator("aa", "bb", 43, "not read");
 
-//4 add a button that brings up a form
+myLibrary.push(book1, book2);
 
+// a function that takes the user's input and store the book in tne myLibrary array
 
-let newBook = document.querySelector('.newBook');
+function addBookToLibrary(title, author, pages, status) {
 
-let form = document.querySelector('form');
-form.style.display = 'none';
-
-
-newBook.addEventListener('click', () => {
-
-    form.style.display = 'inline-block';
-
-});
-
-
-// after the submit button of the form is clicked
-
-const add = document.querySelector('#add');
-
-add.addEventListener('click', () => {
-
-    bookTitle = document.querySelector('#bookTitle').value;
-    bookAuthor = document.querySelector('#bookAuthor').value;
-    bookStatus = document.querySelector('#read').value;
-    form.style.display = 'none';
-
-    addBookToLibrary(bookTitle, bookAuthor, bookStatus);
-
-
+    const book = new BookGenerator(title, author, pages, status);
+    myLibrary.push(book);
     displayBooks();
 
+};
 
-    console.log(myLibrary);
 
 
+// a function that loops through myLibrary and displays the books on the page
+
+
+function displayBooks() {
+    const table = document.querySelector('table');
+
+    // before displaying the books, remove the old ones displayed
+    const rows = document.querySelectorAll('.row');
+    rows.forEach(row => row.remove());
+
+
+    let i = -1;
+    // now dislay the books present in the library
+    for (const book of myLibrary) {
+
+        const tr = document.createElement('tr');
+        tr.setAttribute('class', 'row');
+        tr.setAttribute('data-index', ++i);
+        for (const p in book) {
+
+            if (book.hasOwnProperty(p)) {
+
+                const td = document.createElement('td');
+                td.textContent = book[p];
+                tr.appendChild(td);
+            }
+        }
+        table.appendChild(tr);
+    };
+
+    addremoveButton0();
+    changeButton();
+
+}
+
+
+displayBooks();
+
+
+// add remove button function
+
+
+function addremoveButton0() {
+    const rows = document.querySelectorAll('.row');
+    let i = -1;
+    rows.forEach(r => {
+        const rmbtn = document.createElement('button');
+        rmbtn.textContent = 'remove';
+        rmbtn.classList.add('rmv');
+        rmbtn.setAttribute('data-id', ++i);
+        r.appendChild(rmbtn);
+
+    });
+
+    const rmnz = document.querySelectorAll('.rmv');
+    rmnz.forEach(r => {
+        r.addEventListener('click', () => {
+            let index = r.dataset.id;
+            myLibrary.splice(index, 1);
+
+            displayBooks();
+        })
+    })
+
+}
+
+// adding a button to change status
+
+function changeButton() {
+    const rows = document.querySelectorAll('.row');
+    let i = -1;
+    rows.forEach(row => {
+        const chgBtn = document.createElement('button');
+        chgBtn.classList.add('cb');
+        chgBtn.setAttribute('data-id', ++i);
+        chgBtn.textContent = 'change status';
+        row.appendChild(chgBtn);
+    })
+
+    const cbs = document.querySelectorAll('.cb');
+
+    cbs.forEach(a => {
+        a.addEventListener("click", () => {
+            const index = a.dataset.id;
+            myLibrary[index].changeStatus();
+            displayBooks();
+        })
+    })
+
+}
+
+// adding a book with the DOM
+
+const addBook = document.querySelector('#add2');
+
+addBook.addEventListener('click', () => {
+
+    const status = document.querySelector('select').value;
+    const a = [...document.querySelectorAll('input')].map(e => e.value);
+
+
+    addBookToLibrary(...a, status)
+
+    displayBooks();
+    document.querySelectorAll('input').forEach(e =>
+        e.value = null);
+    form.style.display = 'none';
 });
 
-//5 remove a book
 
+// displaying the form to enter the book information
 
-function a() {
-    removes.forEach(b => b.addEventListener('click', function () {
-        // try to assign id here  for tablerow and remove buttons
-        // so that every time tablerows and buttond and mylibrary indexes are synch
+const add1 = document.querySelector('#add1');
+const form = document.querySelector('form');
 
-        let i = -1;
-        tableRows = document.querySelectorAll('.rows');
-        tableRows.forEach(r => {
-            r.setAttribute('id', `a${++i}`);
-
-        });
-
-        let j = -1;
-        removes = document.querySelectorAll('.remove');
-        removes.forEach(re => {
-            re.setAttribute('id', `b${++j}`);
-        });
-
-        let id = b.getAttribute('id')[1];
-
-
-        let rem = document.querySelector(`#a${id}`);
-
-        rem.remove();
-
-
-        myLibrary.splice(id, 1);
-
-        console.log(myLibrary);
-
-    })
-    );
-
-}
-
-// toggle read status 
-
-
-function b() {
-    toggles.forEach(to => to.addEventListener('click', () => {
-
-
-        let k = -1;
-        toggles = document.querySelectorAll('.toggle');
-        toggles.forEach(t => t.setAttribute('data-key', `${++k}`));
-
-        let id = to.getAttribute('data-key');
-        myLibrary[id].toggle();
-
-        console.log(id);
-
-        displayBooks();
-
-    })
-    );
-}
-
+add1.addEventListener('click', () => {
+    form.style.display = 'block';
+});

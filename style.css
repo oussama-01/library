@@ -1,80 +1,54 @@
 
-/* @import url('https://fonts.googleapis.com/css2?family=Lugrasimo&display=swap'); */
 
-* {}
-
-html {
-    font-family: 'Lugrasimo', cursive;
-
-}
 
 body {
-/* background-image: url(/home/oussama/Downloads/books_1280.jpg);
-background-size: cover;  */
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/******  */
-
-button {
-    padding: 15px;
-    border-radius: 5px;
-    font-size: 1rem;
-    border: none;
-}
-
-button:hover {
-    background-color: #FFEB3B;
+    font-family: sans-serif;
+    
+display: flex;
 
 }
 
-button:active {
-    border: 0.5px solid;
+h1 {
+    text-align: center;
 }
 
-table,
-th,
-tr,
-td {
-    border: 2px solid rgb(255, 0, 149);
+
+/*  table styles*/
+table {
+   /*  border: 2px solid red; */
+    border-collapse: collapse;
+
+    margin: 0 auto;
+
 }
 
 th,
 td {
-    width: 200px;
-
-}
-
-
-/* ******** */
-form {
-    border: 5px solid orange;
-    border-radius: 10px;
+    border: 2px solid blue;
+    width: 120px;
     padding: 5px;
-
 }
 
-h2 {
+td {
     text-align: center;
 
 }
 
-label{
-    display: inline-block;
-    width: 150px;
+/* add book button*/
+
+#add1 {
+   display: block;
+   margin: 0 auto;
 }
 
-#add {
-    display: block;
+
+/* form  styles*/
+
+form {
+    border: 2px solid black;
+    width: fit-content;
+
+
     margin: 0 auto;
 }
-
-
-/* remove/ toggle buttons */
-
-
-
 

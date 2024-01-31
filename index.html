@@ -3,53 +3,61 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Library</title>
+    <title>Library App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    
-    <script src="./script.js" defer></script> 
-    <!-- <script src="./classScript.js" defer></script> -->
-
+    <script src="./script.js" defer></script>
 </head>
 
 <body>
-
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Status</th>
-        </tr>
-
-    </table>
-
-    <br><br>
-
-    <button class="newBook">Add New Book</button>
-    <br>
-
-    <form>
-        <h2>Book Information</h2>
     
-        <div>
-            <label for="bookTitle">Book Title:</label>
-            <input type="text" id="bookTitle" name="book_title">
-        </div> <br>
-    
-        <div>
-            <label for="bookAuthor">Book Author:</label>
-            <input type="text" id="bookAuthor" name="book_author">
-        </div><br>
-    
-        <label for="read">Read status:</label>
-        <select name="read_status" id="read">
-            <option >Already read</option>
-            <option >Not read</option>
-        </select>
-    
-        <br><br>
-        <button type="button" id="add">Add book</button>
-    </form>
+    <div class="div1">
 
+        <h1>My library</h1>
+
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Pages</th>
+                <th>Status</th>
+            </tr>
+        </table>
+    </div>
+    <div class="div2">
+
+        <!-- Button to add a book-->
+        <button type="button" id="add1">Add Book</button>
+
+
+        <!-- form to take the book information as user's inputs  -->
+
+        <form style="display: none;">
+            <h3>Book information</h3>
+            <p>
+                <label for="title">Title:</label>
+                <input type="text" id="title">
+            </p>
+
+            <p>
+                <label for="author">Author:</label>
+                <input type="text" id="author">
+            </p>
+            <p>
+                <label for="pages">Pages:</label>
+                <input type="number" id="pages" min="0">
+            </p>
+            <p>
+                <label for="status">Status:</label>
+                <select name="" id="status">
+                    <option value="already read">already read</option>
+                    <option value="not read">not read</option>
+                </select>
+            </p>
+            <button type="button" id="add2">Add</button>
+        </form>
+
+    </div>
 
 
 </body>
