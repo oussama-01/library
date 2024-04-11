@@ -1,11 +1,11 @@
 
-// an array to store my book objects
+// An array to store my book objects
 
 const myLibrary = [];
 
-// Constructor for making book objects
+// Constructor for creating book objects
 
-function BookGenerator(title, author, pages, status) {
+function Book(title, author, pages, status) {
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -13,35 +13,32 @@ function BookGenerator(title, author, pages, status) {
 
 };
 
-// a method to change the read status of a book instance
+// A method to change the read status of a book instance
 
-BookGenerator.prototype.changeStatus = function () {
+Book.prototype.changeStatus = function () {
     if (this.status === "already read") {
         this.status = "not read";
     } else {
         this.status = "already read";
     }
+
 }
 
-const book1 = new BookGenerator("a", "b", 3, "not read");
-const book2 = new BookGenerator("aa", "bb", 43, "not read");
-
-myLibrary.push(book1, book2);
-
-// a function that takes the user's input and store the book in tne myLibrary array
+// a function that takes the user's input and store the book in the myLibrary array
 
 function addBookToLibrary(title, author, pages, status) {
 
-    const book = new BookGenerator(title, author, pages, status);
+    const book = new Book(title, author, pages, status);
     myLibrary.push(book);
     displayBooks();
 
 };
 
+// dummy books
+addBookToLibrary("aa", "bb", 43, "not read");
 
 
-// a function that loops through myLibrary and displays the books on the page
-
+// A function that loops through myLibrary and displays the books on the page
 
 function displayBooks() {
     const table = document.querySelector('table');
@@ -49,7 +46,6 @@ function displayBooks() {
     // before displaying the books, remove the old ones displayed
     const rows = document.querySelectorAll('.row');
     rows.forEach(row => row.remove());
-
 
     let i = -1;
     // now dislay the books present in the library
@@ -76,11 +72,7 @@ function displayBooks() {
 }
 
 
-displayBooks();
-
-
 // add remove button function
-
 
 function addremoveButton0() {
     const rows = document.querySelectorAll('.row');
