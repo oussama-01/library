@@ -16,6 +16,9 @@ front end:
 - JavaScript Objects and objects constructors
 - Objects prototypes , prototypal inheritance
 
+then replace that with modern JavaScipt class construct
+
+
 - How I organize my code:
 
 

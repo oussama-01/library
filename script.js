@@ -4,7 +4,7 @@
 const myLibrary = [];
 
 // Constructor for creating book objects
-
+/*
 function Book(title, author, pages, status) {
     this.title = title;
     this.author = author;
@@ -23,6 +23,27 @@ Book.prototype.changeStatus = function () {
     }
 
 }
+*/
+
+// Replacing the constructor with a class
+
+class Book {
+    constructor(title, author, pages, status) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.status = status;
+    }
+
+    changeStatus() {
+        if (this.status === "already read") {
+            this.status = "not read";
+        } else {
+            this.status = "already read";
+        }
+    }
+}
+
 
 // a function that takes the user's input and store the book in the myLibrary array
 
@@ -56,12 +77,10 @@ function displayBooks() {
         tr.setAttribute('data-index', ++i);
         for (const p in book) {
 
-            if (book.hasOwnProperty(p)) {
-
-                const td = document.createElement('td');
-                td.textContent = book[p];
-                tr.appendChild(td);
-            }
+            //  if (book.hasOwnProperty(p)) { } // I don't need this test when I use the class construct
+            const td = document.createElement('td');
+            td.textContent = book[p];
+            tr.appendChild(td);
         }
         table.appendChild(tr);
     };
